@@ -1,0 +1,68 @@
+{
+  "name": "hatsapp",
+  "version": "1.0.0",
+  "description": "Wear many WhatsApp hats — switch accounts instantly with unified notifications",
+  "main": "src/main.js",
+  "author": "Alex",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "node scripts/ensure-electron.js",
+    "start": "node scripts/ensure-electron.js && electron .",
+    "dev": "node scripts/ensure-electron.js && electron .",
+    "dist": "electron-builder --win nsis",
+    "dist:dir": "electron-builder --win --dir",
+    "release": "electron-builder --win nsis --publish always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OWNER/HatsApp.git"
+  },
+  "build": {
+    "appId": "com.alex.hatsapp",
+    "productName": "HatsApp",
+    "copyright": "Copyright © Alex",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "HatsApp-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "HatsApp",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
+  },
+  "devDependencies": {
+    "electron": "^39.2.0",
+    "electron-builder": "^26.18.0"
+  }
+}

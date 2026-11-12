@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HatsApp</title>
+    <link rel="stylesheet" href="shell.css" />
+  </head>
+  <body>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-body">
+        <div class="account-list" id="accountList"></div>
+        <div class="empty-sidebar hidden" id="emptyState">
+          <h2>Add a WhatsApp account</h2>
+        </div>
+        <footer class="sidebar-footer">
+          <form id="addForm" class="add-form">
+            <input
+              id="accountName"
+              type="text"
+              placeholder="Account name"
+              maxlength="40"
+              autocomplete="off"
+            />
+            <button type="submit" id="addSubmit">Add</button>
+          </form>
+          <p class="hint">Each account keeps its own login.</p>
+        </footer>
+      </div>
+      <button type="button" class="sidebar-edge-toggle" id="sidebarToggle" title="Hide sidebar" aria-label="Hide sidebar">
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+          <path d="M10.2 3.2L5.4 8l4.8 4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="color-popover hidden" id="colorPopover">
+        <div class="color-grid" id="colorGrid"></div>
+        <label class="color-custom">
+          <span>Custom</span>
+          <input type="color" id="customColor" value="#25D366" />
+        </label>
+      </div>
+    </aside>
+
+    <script src="shell.js"></script>
+  </body>
+</html>
