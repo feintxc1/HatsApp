@@ -1,6 +1,6 @@
 {
   "name": "hatsapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wear many WhatsApp hats — switch accounts instantly with unified notifications",
   "main": "src/main.js",
   "author": "Alex",
