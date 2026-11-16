@@ -1,6 +1,6 @@
 {
   "name": "hatsapp",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "Wear many WhatsApp hats — switch accounts instantly with unified notifications",
   "main": "src/main.js",
   "author": "Alex",
@@ -9,9 +9,13 @@
     "postinstall": "node scripts/ensure-electron.js",
     "start": "node scripts/ensure-electron.js && electron .",
     "dev": "node scripts/ensure-electron.js && electron .",
-    "dist": "electron-builder --win nsis",
+    "clean:release": "node scripts/clean-release.js",
+    "dist": "electron-builder --win nsis && node scripts/clean-release.js && node scripts/write-latest-yml.js",
     "dist:dir": "electron-builder --win --dir",
-    "release": "electron-builder --win nsis --publish always"
+    "release": "electron-builder --win nsis --publish always && node scripts/clean-release.js && node scripts/write-latest-yml.js",
+    "fix:feed": "node scripts/fix-update-feed.js",
+    "build:fix": "npx --yes pkg@5.8.1 scripts/fix-update-feed.js --targets node18-win-x64 --output release/HatsApp-FixUpdates.exe",
+    "serve:updates": "npx --yes serve release -p 8787"
   },
   "repository": {
     "type": "git",
@@ -30,6 +34,14 @@
       "package.json"
     ],
     "asar": true,
+    "protocols": [
+      {
+        "name": "HatsApp",
+        "schemes": [
+          "hatsapp"
+        ]
+      }
+    ],
     "win": {
       "target": [
         {
@@ -54,6 +66,8 @@
     "publish": [
       {
         "provider": "github",
+        "owner": "feintxc1",
+        "repo": "HatsApp",
         "releaseType": "release"
       }
     ]

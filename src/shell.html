@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HatsApp</title>
@@ -28,7 +28,11 @@
             />
             <button type="submit" id="addSubmit">Add</button>
           </form>
-          <p class="hint">Each account keeps its own login.</p>
+          <div class="update-panel" id="updatePanel">
+            <button type="button" class="update-btn" id="updateBtn">Check for updates</button>
+            <p class="update-status" id="updateStatus"></p>
+          </div>
+          <p class="hint">Each account keeps its own login. Drag to reorder.</p>
         </footer>
       </div>
       <button type="button" class="sidebar-edge-toggle" id="sidebarToggle" title="Hide sidebar" aria-label="Hide sidebar">
@@ -36,12 +40,10 @@
           <path d="M10.2 3.2L5.4 8l4.8 4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
-      <div class="color-popover hidden" id="colorPopover">
-        <div class="color-grid" id="colorGrid"></div>
-        <label class="color-custom">
-          <span>Custom</span>
-          <input type="color" id="customColor" value="#25D366" />
-        </label>
+      <div class="account-menu hidden" id="accountMenu">
+        <button type="button" class="account-menu-item" id="accountMenuMute">Mute notifications</button>
+        <button type="button" class="account-menu-item" id="accountMenuReload">Reload account</button>
+        <button type="button" class="account-menu-item danger" id="accountMenuRemove">Remove account</button>
       </div>
     </aside>
 
